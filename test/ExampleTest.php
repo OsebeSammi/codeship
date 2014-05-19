@@ -7,13 +7,19 @@
  */
 require_once('vendor/facebook/webdriver/lib/__init__.php');
 
-class ExampleTest extends PHPUnit_Framework_TestCase {
+class ExampleTest extends PHPUnit_Framework_TestCase
+{
   protected $webDriver;
+  protected $something;
 
   public function setUp()
   {
     $capabilities = array(\WebDriverCapabilityType::BROWSER_NAME => 'chrome');
     $this->webDriver = RemoteWebDriver::create('http://localhost:9515', $capabilities);
+
+    //this code does nothing
+    $this->something = "nothing";
+
   }
 
   public function tearDown()
@@ -25,6 +31,12 @@ class ExampleTest extends PHPUnit_Framework_TestCase {
   {
     $this->webDriver->get('https://github.com');
     $this->assertContains('GitHub', $this->webDriver->getTitle());
+  }
+
+  public function retSomething()
+  {
+      return $this->something;
+
   }
 }
 ?>
